@@ -1,6 +1,8 @@
 # SAFARI-Animate
 This software is a visual aid meant to be combined with Sea-Safari which can be found here: https://github.com/SINS-Lab/SEA-SAFARI?tab=readme-ov-file
 
+This program was made using godot 4.3 and to change settings within it such as default ion and surface size, godot needs to be used. An exe file is attached and can run the program as well.
+
 By using the .traj and .xyz files that are output from Sea-Safari, Safari-Animate creates a 3D environment in which the user can move around, see the collisions occur in seconds (done in femtoseconds in Sea-Safari), and be seen in a viewable size. The user can change the size of the ion and surface materials, as well as see the path the ion took, and see what surface atoms are effected by the ion.
 
 # Setup and Testing:
