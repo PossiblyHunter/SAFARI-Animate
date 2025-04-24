@@ -1,0 +1,42 @@
+[gd_scene load_steps=10 format=3 uid="uid://chiht56bd1rak"]
+
+[ext_resource type="PackedScene" uid="uid://cykwlw3y8qpy" path="res://GUI.tscn" id="1_0acnb"]
+[ext_resource type="Script" path="res://Scripts/Ball_Trajectory.gd" id="1_6cd7d"]
+[ext_resource type="Script" path="res://Scripts/ion_movement.gd" id="2_aig05"]
+[ext_resource type="Script" path="res://surface_ion.gd" id="3_47i5y"]
+[ext_resource type="PackedScene" uid="uid://4dm68qs6j237" path="res://user.tscn" id="3_kypl6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rx8mx"]
+albedo_color = Color(0, 0, 1, 1)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mke5w"]
+
+[sub_resource type="Sky" id="Sky_hjsiv"]
+sky_material = SubResource("ProceduralSkyMaterial_mke5w")
+
+[sub_resource type="Environment" id="Environment_gaf2r"]
+background_mode = 2
+sky = SubResource("Sky_hjsiv")
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_6cd7d")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Ion" type="CSGSphere3D" parent="." groups=["Slider_Ion"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.37393, 0.434109, -0.0452962)
+material = SubResource("StandardMaterial3D_rx8mx")
+script = ExtResource("2_aig05")
+
+[node name="Surface1" type="CSGSphere3D" parent="."]
+script = ExtResource("3_47i5y")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_gaf2r")
+
+[node name="Control" parent="." instance=ExtResource("1_0acnb")]
+
+[node name="User" parent="." instance=ExtResource("3_kypl6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.54936, 2.21462, 3.61181)

@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqhg02ajnsq4i"]
+
+[ext_resource type="Script" path="res://Scripts/surface.gd" id="1_wgfn4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_frtpb"]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_eb0np"]
+material = SubResource("StandardMaterial3D_frtpb")
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_wgfn4")
+atom_mesh = SubResource("SphereMesh_eb0np")
+
+[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="."]
+transform = Transform3D(10.24, 0, 0, 0, 10.24, 0, 0, 0, 10.24, 0, 0, 0)

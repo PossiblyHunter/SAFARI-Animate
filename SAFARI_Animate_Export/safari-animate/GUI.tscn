@@ -1,0 +1,201 @@
+[gd_scene load_steps=28 format=3 uid="uid://cykwlw3y8qpy"]
+
+[ext_resource type="Texture2D" uid="uid://7hg2a7vnc8q2" path="res://Assets/Play_right.png" id="1_3lsrh"]
+[ext_resource type="Script" path="res://Scripts/slider_control.gd" id="1_kvyq8"]
+[ext_resource type="Script" path="res://Scripts/details_control.gd" id="1_ylxtp"]
+[ext_resource type="Texture2D" uid="uid://c0jd41cm57qna" path="res://Assets/Fast_backward.png" id="2_jvj4a"]
+[ext_resource type="Script" path="res://Scripts/Place_files.gd" id="2_l0cmk"]
+[ext_resource type="Texture2D" uid="uid://dek3n826a5p62" path="res://Assets/Play_stop.png" id="3_ky8gi"]
+[ext_resource type="Texture2D" uid="uid://httowmdpjyrk" path="res://Assets/click_play.png" id="3_nfytj"]
+[ext_resource type="Texture2D" uid="uid://ckvth1pe2sb2h" path="res://Assets/hover_play.png" id="3_yd43t"]
+[ext_resource type="Script" path="res://Scripts/play_button.gd" id="4_4ldns"]
+[ext_resource type="Texture2D" uid="uid://bkl0n01e7q0vm" path="res://Assets/Fast_forward.png" id="4_pwl1u"]
+[ext_resource type="Script" path="res://Scripts/play_back.gd" id="6_8xudf"]
+[ext_resource type="Texture2D" uid="uid://cduxqk2pyx2c3" path="res://Assets/click_back.png" id="7_0w5x2"]
+[ext_resource type="Script" path="res://Scripts/play_forward.gd" id="8_315dn"]
+[ext_resource type="Texture2D" uid="uid://dv2y6ggcw6v88" path="res://Assets/hover_back.png" id="8_qmkwk"]
+[ext_resource type="Script" path="res://Scripts/stop_button.gd" id="8_suf77"]
+[ext_resource type="Texture2D" uid="uid://l4004svey7bm" path="res://Assets/click_stop.png" id="11_a5g3d"]
+[ext_resource type="Texture2D" uid="uid://bxva04rne4gwy" path="res://Assets/hover_stop.png" id="12_rlycq"]
+[ext_resource type="Texture2D" uid="uid://bo8kgc00pro5u" path="res://Assets/click_ff.png" id="15_udebs"]
+[ext_resource type="Texture2D" uid="uid://c4v1e8htqx357" path="res://Assets/hover_ff.png" id="16_3fva6"]
+[ext_resource type="Script" path="res://Scripts/ion_slider.gd" id="20_yjjm8"]
+[ext_resource type="Script" path="res://Scripts/surf_slider.gd" id="21_ah0hb"]
+[ext_resource type="Script" path="res://Scripts/ion_tip.gd" id="21_rymtb"]
+[ext_resource type="Script" path="res://Scripts/surf_tip.gd" id="23_fn0tp"]
+[ext_resource type="Script" path="res://Scripts/trail_box.gd" id="24_qniys"]
+[ext_resource type="Script" path="res://collision_box.gd" id="25_88tmg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0cvwm"]
+
+[sub_resource type="GDScript" id="GDScript_yikmx"]
+script/source = "extends HBoxContainer
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="GUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 936.0
+offset_right = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+
+[node name="Container" type="Container" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.003
+anchor_top = -6.431
+anchor_right = 0.003
+anchor_bottom = -6.431
+offset_left = -0.73
+offset_top = 0.0640259
+offset_right = 243.27
+offset_bottom = 191.064
+
+[node name="Label" type="Label" parent="Container"]
+layout_mode = 2
+text = "Position: 
+Momentum: 
+Time: "
+label_settings = SubResource("LabelSettings_0cvwm")
+script = ExtResource("1_ylxtp")
+
+[node name="Label2" type="Label" parent="Container"]
+layout_mode = 2
+text = "
+
+
+
+Place .xyz and .traj file in SAFARI2 folder
+inside of documents and make sure to add tab ion material tab surface material to the .xyz file behind the first line"
+script = ExtResource("2_l0cmk")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -925.0
+offset_top = -148.0
+offset_right = 925.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 10
+
+[node name="Timeline_Row" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/Timeline_Row"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("1_kvyq8")
+target_path = NodePath("")
+
+[node name="Buttons_Row" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+script = SubResource("GDScript_yikmx")
+
+[node name="play_button" type="TextureButton" parent="VBoxContainer/Buttons_Row"]
+layout_mode = 2
+texture_normal = ExtResource("1_3lsrh")
+texture_pressed = ExtResource("3_nfytj")
+texture_hover = ExtResource("3_yd43t")
+script = ExtResource("4_4ldns")
+
+[node name="play_back" type="TextureButton" parent="VBoxContainer/Buttons_Row"]
+layout_mode = 2
+texture_normal = ExtResource("2_jvj4a")
+texture_pressed = ExtResource("7_0w5x2")
+texture_hover = ExtResource("8_qmkwk")
+script = ExtResource("6_8xudf")
+
+[node name="stop_button" type="TextureButton" parent="VBoxContainer/Buttons_Row"]
+layout_mode = 2
+texture_normal = ExtResource("3_ky8gi")
+texture_pressed = ExtResource("11_a5g3d")
+texture_hover = ExtResource("12_rlycq")
+script = ExtResource("8_suf77")
+
+[node name="fast_foward" type="TextureButton" parent="VBoxContainer/Buttons_Row"]
+layout_mode = 2
+texture_normal = ExtResource("4_pwl1u")
+texture_pressed = ExtResource("15_udebs")
+texture_hover = ExtResource("16_3fva6")
+script = ExtResource("8_315dn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Buttons_Row"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Buttons_Row/VBoxContainer"]
+layout_mode = 2
+
+[node name="ion_slider" type="HSlider" parent="VBoxContainer/Buttons_Row/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Slider for ion size"
+min_value = 0.01
+max_value = 1.0
+step = 0.01
+value = 0.01
+script = ExtResource("20_yjjm8")
+
+[node name="ion_tip" type="Label" parent="VBoxContainer/Buttons_Row/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+script = ExtResource("21_rymtb")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/Buttons_Row/VBoxContainer"]
+layout_mode = 2
+
+[node name="surf_slider" type="HSlider" parent="VBoxContainer/Buttons_Row/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Slider for surface particle size (change frame for it to update)"
+min_value = 0.5
+max_value = 3.0
+step = 0.05
+value = 0.5
+script = ExtResource("21_ah0hb")
+
+[node name="surf_tip" type="Label" parent="VBoxContainer/Buttons_Row/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+script = ExtResource("23_fn0tp")
+
+[node name="trail_box" type="CheckBox" parent="VBoxContainer/Buttons_Row/VBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "Ion Trail"
+script = ExtResource("24_qniys")
+
+[node name="collision_box" type="CheckBox" parent="VBoxContainer/Buttons_Row/VBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "Change color after hit"
+script = ExtResource("25_88tmg")
+
+[connection signal="value_changed" from="VBoxContainer/Timeline_Row/HSlider" to="VBoxContainer/Timeline_Row/HSlider" method="_on_value_changed"]
+[connection signal="pressed" from="VBoxContainer/Buttons_Row/play_button" to="VBoxContainer/Buttons_Row/play_button" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/Buttons_Row/play_back" to="VBoxContainer/Buttons_Row/play_back" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/Buttons_Row/stop_button" to="VBoxContainer/Buttons_Row/stop_button" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/Buttons_Row/fast_foward" to="VBoxContainer/Buttons_Row/fast_foward" method="_on_pressed"]
+[connection signal="value_changed" from="VBoxContainer/Buttons_Row/VBoxContainer/HBoxContainer/ion_slider" to="VBoxContainer/Buttons_Row/VBoxContainer/HBoxContainer/ion_slider" method="_on_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/Buttons_Row/VBoxContainer/HBoxContainer/ion_slider" to="VBoxContainer/Buttons_Row/VBoxContainer/HBoxContainer/ion_tip" method="_on_ion_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/Buttons_Row/VBoxContainer/HBoxContainer2/surf_slider" to="VBoxContainer/Buttons_Row/VBoxContainer/HBoxContainer2/surf_slider" method="_on_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/Buttons_Row/VBoxContainer/HBoxContainer2/surf_slider" to="VBoxContainer/Buttons_Row/VBoxContainer/HBoxContainer2/surf_tip" method="_on_surf_slider_value_changed"]
+[connection signal="toggled" from="VBoxContainer/Buttons_Row/VBoxContainer/trail_box" to="VBoxContainer/Buttons_Row/VBoxContainer/trail_box" method="_on_toggled"]
+[connection signal="toggled" from="VBoxContainer/Buttons_Row/VBoxContainer/collision_box" to="VBoxContainer/Buttons_Row/VBoxContainer/collision_box" method="_on_toggled"]
